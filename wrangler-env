@@ -33,6 +33,6 @@ function _wrangler_list_profiles() {
 alias wrangler-switch="_wrangler_env"
 alias wrangler-unset="_wrangler_unset"
 alias wrangler-list="_wrangler_list_profiles"
-alias wrangler-who='echo CF_WRANGLER_PROFILE'
+alias wrangler-who='echo $CF_WRANGLER_PROFILE'
 
 wrangler-switch default
