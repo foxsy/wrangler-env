@@ -1,0 +1,38 @@
+#!/bin/bash
+
+function _wrangler_env() {
+  profile="${CF_WRANGLER_PROFILE}"
+  if [[ $# -ge 1 ]] && profile="${1}"
+    then
+      profiles="${CF_WRANGLER_PROFILES}/${1}"
+  fi
+  if [[ $# -le 0 ]] && command -v fzf
+    then
+      profiles="$(_wrangler_list_profiles | fzf --prompt "profiles: " -m)"
+      export CF_WRANGLER_PROFILE="$profile"
+  fi
+  while read line; do
+      export $line;
+  done < $profiles
+  export CF_WRANGLER_PROFILE=$profiles
+}
+
+function _wrangler_unset() {
+  wrangler logout
+  unset CF_WRANGLER_PROFILE
+  unset CF_ACCOUNT_ID
+  unset CF_API_TOKEN
+}
+
+function _wrangler_list_profiles() {
+  while read line; do
+      echo "$line";
+  done < <(ls -1 ${CF_WRANGLER_PROFILES}/* | sort | uniq);
+};
+
+alias wrangler-switch="_wrangler_env"
+alias wrangler-unset="_wrangler_unset"
+alias wrangler-list="_wrangler_list_profiles"
+alias wrangler-who="${CF_WRANGLER_PROFILE}"
+
+wrangler-switch default
