@@ -11,7 +11,7 @@ Include `wrangler-env` in your bash profile config (~/.profile,  ~/.bash_profile
 Your profiles should look like the following (~/.wrangler/profiles/<profile name>)
 ```
 CF_ACCOUNT_ID=489357394578903450293482034
-CF_API_TOKEN=alisdfj8234rjasdlfija80234jr0asjf45rqR@#$RW
+CLOUDFLARE_API_TOKEN=alisdfj8234rjasdlfija80234jr0asjf45rqR@#$RW
 ```
 You can acquire these from your cloudflare dashboard under:
  dash.cloudflare.com/profile/api-tokens
